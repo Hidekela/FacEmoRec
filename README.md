@@ -37,8 +37,8 @@ Projet réalisé en binôme dans `reconnaisance_des_emotions` autour de la class
 - `opencv-python<5` : détection faciale via `cv2.CascadeClassifier` et gestion du flux webcam (la version inférieure à 5 est recommandée pour conserver la compatibilité attendue avec `CascadeClassifier`).
 ### Installation
 ```bash
-git clone 
-cd reconnaisance_des_emotions
+git clone https://github.com/Hidekela/FacEmoRec.git
+cd FacEmoRec/reconnaisance_des_emotions
 
 # Créer et activer l'environnement virtuel Python
 python3 -m venv .venv
