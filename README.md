@@ -1,7 +1,7 @@
 
 # Reconnaissance des émotions faciales sur FER-2013 : comparaison CNN vs Vision Transformer
 
-Projet réalisé en binôme dans `reconnaisance_des_emotions` autour de la classification des expressions faciales sur le jeu de données **FER-2013** (jeu de données de référence pour la reconnaissance automatique des expressions faciales, créé par Pierre-Luc Carrier et Aaron Courville), comparant une approche convolutionnelle locale (`CNN_Modi_et_al.ipynb`, `48×48`) et une approche basée sur les *Vision Transformers* avec *pooling attentionnel* (`vision_transformer_et_comparaison.ipynb`, `128×128`, inspirée des travaux sur les *Vision Transformers* type Xue et al.), avec une comparaison directe et un test temps réel via webcam.
+Projet réalisé en binôme dans `reconnaisance_des_emotions` autour de la classification des expressions faciales sur le jeu de données **FER-2013** (jeu de données de référence pour la reconnaissance automatique des expressions faciales, créé par Pierre-Luc Carrier et Aaron Courville), comparant une approche convolutionnelle locale (`CNN_Modi_et_al.ipynb`) et une approche basée sur les *Vision Transformers* avec *pooling attentionnel* (`vision_transformer_et_comparaison.ipynb`, inspirée des travaux sur les *Vision Transformers* type Xue et al.), avec une comparaison directe et un test temps réel via webcam.
 
 ## Auteurs (Binôme)
 - **RANDRIANJAFY Voahanginiaina Roberte**
