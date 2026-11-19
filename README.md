@@ -60,10 +60,10 @@ Sélectionnez le noyau Python associé à `.venv` (*Kernel > Restart Kernel* si 
 
 ## Les résultats obtenus et brève analyse
 
-| Modèle | Notebook | Résolution | Meilleure précision | Fichiers associés |
-| :--- | :--- | :---: | :---: | :--- |
-| **CNN** | `CNN_Modi_et_al.ipynb` | `48×48` | `62.13%` | `best_cnn_emotion.pth`, `resultats_cnn_emotion.png` |
-| **ViT + Attention Pooling** | `vision_transformer_et_comparaison.ipynb` | `128×128` | `66.35%` | `best_vit_emotion.pth`, `resultats_vit_emotion.png` |
+| Modèle | Notebook | Meilleure précision | Fichiers associés |
+| :--- | :--- | :---: | :---: |
+| **CNN** | `CNN_Modi_et_al.ipynb`  | `62.13%` | `best_cnn_emotion.pth`, `resultats_cnn_emotion.png` |
+| **ViT + Attention Pooling** | `vision_transformer_et_comparaison.ipynb`  | `66.35%` | `best_vit_emotion.pth`, `resultats_vit_emotion.png` |
 
 ### Brève analyse
 - **Apport du Vision Transformer et du pooling attentionnel :** l'auto-attention permet de capturer des relations globales entre différentes zones du visage, et le pooling attentionnel pondère dynamiquement les représentations les plus informatives pour la classification des émotions, là où le CNN (`48×48`) s'appuie sur des filtres convolutifs locaux.
