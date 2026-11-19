@@ -1,10 +1,10 @@
 
-# Reconnaissance des emotions faciales sur FER-2013 : comparaison CNN vs Vision Transformer (MobileViT)
+# Reconnaissance des émotions faciales sur FER-2013 : comparaison CNN vs Vision Transformer
 
-Projet réalisé en binôme dans `reconnaisance_des_emotions` autour de la classification des expressions faciales sur le jeu de données **FER-2013** (c'est un jeu de données de référence pour la reconnaissance automatique des expressions faciales, créé par Pierre-Luc Carrier et Aaron Courville ), comparant une approche convolutionnelle locale (`CNN_Modi_et_al.ipynb`, `48×48`) et une approche basée sur les *Vision Transformers* / **MobileViT** (`vision_transformer_et_comparaison.ipynb`, `128×128`, inspirée des travaux sur les *Vision Transformers* type Xue et al.), avec une comparaison directe et test temps réel via webcam.
+Projet réalisé en binôme dans `reconnaisance_des_emotions` autour de la classification des expressions faciales sur le jeu de données **FER-2013** (jeu de données de référence pour la reconnaissance automatique des expressions faciales, créé par Pierre-Luc Carrier et Aaron Courville), comparant une approche convolutionnelle locale (`CNN_Modi_et_al.ipynb`, `48×48`) et une approche basée sur les *Vision Transformers* avec *pooling attentionnel* (`vision_transformer_et_comparaison.ipynb`, `128×128`, inspirée des travaux sur les *Vision Transformers* type Xue et al.), avec une comparaison directe et un test temps réel via webcam.
 
 ## Auteurs (Binôme)
-- **RANDRIANJAFY Voahanginiaina Roberte** 
+- **RANDRIANJAFY Voahanginiaina Roberte**
 - **RAJAOVELONA Hidekela Fanaperantsoa**
 
 ---
@@ -35,6 +35,7 @@ Projet réalisé en binôme dans `reconnaisance_des_emotions` autour de la class
 - `matplotlib` et `numpy` : calcul numérique et génération des graphiques (`300 dpi`).
 - `jupyterlab` : exécution interactive des notebooks `.ipynb` en local.
 - `opencv-python<5` : détection faciale via `cv2.CascadeClassifier` et gestion du flux webcam (la version inférieure à 5 est recommandée pour conserver la compatibilité attendue avec `CascadeClassifier`).
+
 ### Installation
 ```bash
 git clone https://github.com/Hidekela/FacEmoRec.git
@@ -47,82 +48,39 @@ source .venv/bin/activate
 # Installer les bibliothèques nécessaires
 pip install torch torchvision timm scikit-learn matplotlib numpy jupyterlab "opencv-python<5"
 ```
-Vérification rapide
-Graphiques des résultats
-Résultats du CNN (48×48)
-Résultats du Vision Transformer avec pooling attentionnel
-Comparaison directe CNN vs Vision Transformer
-Brève analyse
 
-    Apport du Vision Transformer et du pooling attentionnel : l'auto-attention permet de capturer des relations globales entre différentes zones du visage, et le pooling attentionnel pondère dynamiquement les représentations les plus informatives pour la classification des émotions, là où le CNN (48×48) s'appuie sur des filtres convolutifs locaux.
-
-    Compromis performance / temps de calcul : l'architecture CNN reste plus légère et rapide par image, tandis que le Vision Transformer avec pooling attentionnel apporte une modélisation plus riche au prix d'un coût de calcul supérieur.
-
-    Erreurs typiques sur FER-2013 : les matrices de confusion (resultats_cnn_emotion.png et resultats_vit_emotion.png) reflètent les confusions classiques du jeu de données entre expressions visuellement proches (comme peur / surprise ou tristesse / neutre).
-
-Les instructions nécessaires pour reproduire les résultats
-
-    Vérifier le jeu de données : assurez-vous que le dossier dataset/ est présent et organisé selon les chemins attendus par les notebooks (train / test ou validation).
-
-    Reproduire les résultats du CNN :
-
-        Ouvrez CNN_Modi_et_al.ipynb.
-
-        Exécutez les cellules d'entraînement et d'évaluation afin de générer best_cnn_emotion.pth et resultats_cnn_emotion.png.
-
-    Reproduire les résultats du Vision Transformer avec pooling attentionnel et la comparaison :
-
-        Ouvrez vision_transformer_et_comparaison.ipynb.
-
-        Exécutez les cellules d'entraînement et d'évaluation du Vision Transformer équipé du pooling attentionnel pour produire best_vit_emotion.pth et resultats_vit_emotion.png.
-
-        Exécutez la cellule de comparaison finale pour afficher les métriques (précision, score F1, temps d'inférence) et sauvegarder comparaison_cnn_vs_vit.png sans réentraîner le CNN.
-
-    Reproduire le test sur webcam :
-
-        Lancez la cellule dédiée à la webcam en vérifiant que le modèle choisi, sa résolution d'entrée et le fichier .pth correspondant sont cohérents avec cv2.CascadeClassifier.Bash
-
+### Vérification rapide et lancement
+```bash
 python -c "import cv2, torch, timm; print('OK:', cv2.__version__, torch.__version__, timm.__version__)"
-
-Bash
-
 jupyter lab
-
-Sélectionnez le noyau Python associé à .venv (Kernel > Restart Kernel si besoin), puis ouvrez CNN_Modi_et_al.ipynb ou vision_transformer_et_comparaison.ipynb et exécutez les cellules.
 ```
-## Les résultats obtenus, accompagnés d’une brève analyse
-| Modèle | Notebook | Résolution | meilleur precision | Fichiers associés |
-| :--- | :--- | :---: | :---: | :---: | :---: | :--- |
-| **CNN** | `CNN_Modi_et_al.ipynb` | 48×48 | `[62.13%]`| `best_cnn_emotion.pth`, `resultats_cnn_emotion.png` |
-| **ViT + Attention Pooling** | `vision_transformer_et_comparaison.ipynb` | `[128x128]` | `[66.35%]` | `best_vit_emotion.pth`, `resultats_vit_emotion.png` |
-```  
+Sélectionnez le noyau Python associé à `.venv` (*Kernel > Restart Kernel* si besoin), puis ouvrez `CNN_Modi_et_al.ipynb` ou `vision_transformer_et_comparaison.ipynb` et exécutez les cellules.
 
-## Brève analyse
+---
 
-  Apport du Vision Transformer et du pooling attentionnel : l'auto-attention permet de capturer des relations globales entre différentes zones du visage, et le pooling attentionnel pondère dynamiquement les représentations les plus informatives pour la classification des émotions, là où le CNN (48×48) s'appuie sur des filtres convolutifs locaux.
+## Les résultats obtenus et brève analyse
 
-  Compromis performance / temps de calcul : l'architecture CNN reste plus légère et rapide par image, tandis que le Vision Transformer avec pooling attentionnel apporte une modélisation plus riche au prix d'un coût de calcul supérieur.
+| Modèle | Notebook | Résolution | Meilleure précision | Fichiers associés |
+| :--- | :--- | :---: | :---: | :--- |
+| **CNN** | `CNN_Modi_et_al.ipynb` | `48×48` | `62.13%` | `best_cnn_emotion.pth`, `resultats_cnn_emotion.png` |
+| **ViT + Attention Pooling** | `vision_transformer_et_comparaison.ipynb` | `128×128` | `66.35%` | `best_vit_emotion.pth`, `resultats_vit_emotion.png` |
 
-   Erreurs typiques sur FER-2013 : les matrices de confusion (resultats_cnn_emotion.png et resultats_vit_emotion.png) reflètent les confusions classiques du jeu de données entre expressions visuellement proches (comme peur / surprise ou tristesse / neutre).
+### Brève analyse
+- **Apport du Vision Transformer et du pooling attentionnel :** l'auto-attention permet de capturer des relations globales entre différentes zones du visage, et le pooling attentionnel pondère dynamiquement les représentations les plus informatives pour la classification des émotions, là où le CNN (`48×48`) s'appuie sur des filtres convolutifs locaux.
+- **Compromis performance / temps de calcul :** l'architecture CNN reste plus légère et rapide par image, tandis que le Vision Transformer avec pooling attentionnel apporte une modélisation plus riche au prix d'un coût de calcul supérieur.
+- **Erreurs typiques sur FER-2013 :** les matrices de confusion (`resultats_cnn_emotion.png` et `resultats_vit_emotion.png`) reflètent les confusions classiques du jeu de données entre expressions visuellement proches (comme peur / surprise ou tristesse / neutre).
 
-## Les instructions nécessaires pour reproduire les résultats
+---
 
-   Vérifier le jeu de données : assurez-vous que le dossier dataset/ est présent et organisé selon les chemins attendus par les notebooks (train / test ou validation).
+## Instructions pour reproduire les résultats
 
-  Reproduire les résultats du CNN :
-
-        Ouvrez CNN_Modi_et_al.ipynb.
-
-        Exécutez les cellules d'entraînement et d'évaluation afin de générer best_cnn_emotion.pth et resultats_cnn_emotion.png.
-
-  Reproduire les résultats du Vision Transformer avec pooling attentionnel et la comparaison :
-
-        Ouvrez vision_transformer_et_comparaison.ipynb.
-
-        Exécutez les cellules d'entraînement et d'évaluation du Vision Transformer équipé du pooling attentionnel pour produire best_vit_emotion.pth et resultats_vit_emotion.png.
-
-        Exécutez la cellule de comparaison finale pour afficher les métriques (précision, score F1, temps d'inférence) et sauvegarder comparaison_cnn_vs_vit.png sans réentraîner le CNN.
-
-  ### Reproduire le test sur webcam :
-
-        Lancez la cellule dédiée à la webcam en vérifiant le modèle choisi, sa résolution d'entrée et le fichier .pth correspondant sont cohérents avec cv2.CascadeClassifier.
+1. **Vérifier le jeu de données :** assurez-vous que le dossier `dataset/` est présent et organisé selon les chemins attendus par les notebooks (`train` / `test` ou `validation`).
+2. **Reproduire les résultats du CNN :**
+   - Ouvrez `CNN_Modi_et_al.ipynb`.
+   - Exécutez les cellules d'entraînement et d'évaluation afin de générer `best_cnn_emotion.pth` et `resultats_cnn_emotion.png`.
+3. **Reproduire les résultats du Vision Transformer avec pooling attentionnel et la comparaison :**
+   - Ouvrez `vision_transformer_et_comparaison.ipynb`.
+   - Exécutez les cellules d'entraînement et d'évaluation du Vision Transformer équipé du pooling attentionnel pour produire `best_vit_emotion.pth` et `resultats_vit_emotion.png`.
+   - Exécutez la cellule de comparaison finale pour afficher les métriques (précision, score F1, temps d'inférence) et sauvegarder `comparaison_cnn_vs_vit.png` sans réentraîner le CNN.
+4. **Reproduire le test sur webcam :**
+   - Lancez la cellule dédiée à la webcam en vérifiant que le modèle choisi, sa résolution d'entrée et le fichier `.pth` correspondant sont cohérents avec `cv2.CascadeClassifier`.
