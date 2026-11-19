@@ -1,0 +1,5 @@
+,Accuracy test (%),F1 macro test (%),Accuracy val_sel (%),Paramètres (M),Temps d'entraînement (min),Nb de graines
+cnn_scratch,55.04 ± 0.61,44.44 ± 0.87,56.39 ± 0.57,0.42,14.4,3
+mobilevit_scratch,61.04 ± 0.50,57.48 ± 0.45,61.13 ± 0.35,0.95,17.0,3
+mobilevit_pretrained,66.62 ± 0.71,64.56 ± 0.88,67.34 ± 0.42,0.95,17.2,3
+mobilevit_attnpool,66.47 ± 0.37,63.97 ± 0.25,67.10 ± 0.71,0.98,17.0,3

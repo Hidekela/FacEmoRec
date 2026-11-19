@@ -1,0 +1,5 @@
+modèle,params_M,cpu_ms,gpu_ms
+cnn_scratch,0.42,8.36,0.82
+mobilevit_scratch,0.95,11.88,8.92
+mobilevit_pretrained,0.95,12.72,11.54
+mobilevit_attnpool,0.98,12.72,9.27
