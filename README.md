@@ -38,7 +38,7 @@ Projet réalisé en binôme dans `reconnaisance_des_emotions` autour de la class
 ### Installation
 ```bash
 git clone https://github.com/Hidekela/FacEmoRec.git
-cd FacEmoRec/reconnaisance_des_emotions
+cd FacEmoRec
 
 # Créer et activer l'environnement virtuel Python
 python3 -m venv .venv
